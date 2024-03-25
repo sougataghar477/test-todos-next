@@ -1,95 +1,42 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
-export default function Home() {
+'use client';
+import { useEffect,useState } from "react";
+import { Container,Textarea,Flex,Text,Button,Box } from "@mantine/core";
+import { useSession, getSession } from "next-auth/react";
+export default  function Home() { 
+  let [text,setText]=useState('');
+  const { data, status } = useSession();
+ useEffect(()=>{
+  fetch("/api/login")
+  .then(a => a.json())
+  .then(b => console.log(b))
+ },[])
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Container maw={640}>
+      <Flex mt={32} gap={16}>
+        <Box maw={480} flex={1}>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <Textarea
+        value={text}
+        mx={'auto'}
+        size="xl"
+        placeholder="Type something to add a post"
+        onInput={e => setText(e.target.value)}
+  />
+    <Button title="hello" disabled={!(text.length>0 && status==='authenticated')} onClick={()=>{
+      fetch('/api/addPost',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // specifying that the data being sent is JSON
+        },
+        body: JSON.stringify({text,email:data.user.email}) // converting JavaScript object to JSON string
+    });
+    setText('')
+    }} mt={16}>Add Post</Button>
+        </Box>
+      
+      
+  <Text w={240} display={{base:'none',sm:'flex'}}>Hello</Text>
+      </Flex>
+      </Container>
   );
 }
