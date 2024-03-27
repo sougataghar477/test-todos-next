@@ -35,8 +35,8 @@ export default  function Home() {
     });
     setText('');
     notifications.show({
-      title: 'Default notification',
-      message: 'Hey there, your code is awesome! 🤥',
+      title: 'Success',
+      message: 'Task added',
     })
     }} mt={16}>Add Post</Button>
         </Box>
