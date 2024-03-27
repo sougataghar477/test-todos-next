@@ -1,7 +1,8 @@
 import db from '../../../utils/mongo';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/react';
+import { authOptions } from './auth/[...nextauth]';
 export default async function handler(req, res) {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   console.log(session)
 let foundEmail=await db.collection("users").findOne({email:session?.user?.email});
 if(foundEmail){
