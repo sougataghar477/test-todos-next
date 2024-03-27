@@ -10,9 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 const theme = createTheme({
   /** Put your mantine theme override here */
 });
- 
+ import { useEffect } from "react";
 
 export default function RootLayout({ children }) {
+  useEffect(()=>{
+    fetch("/api/login")
+    .then(a => a.json())
+    .then(b => console.log(b))
+   },[])
   return (
     <html lang="en">
       <body>

@@ -5,11 +5,11 @@ import { useSession, getSession } from "next-auth/react";
 export default  function Home() { 
   let [text,setText]=useState('');
   const { data, status } = useSession();
- useEffect(()=>{
-  fetch("/api/login")
-  .then(a => a.json())
-  .then(b => console.log(b))
- },[])
+//  useEffect(()=>{
+//   fetch("/api/login")
+//   .then(a => a.json())
+//   .then(b => console.log(b))
+//  },[])
   return (
     <Container maw={640}>
       <Flex mt={32} gap={16}>
