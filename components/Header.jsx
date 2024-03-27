@@ -1,4 +1,4 @@
-import { Avatar, Container,Flex } from "@mantine/core";
+import { Avatar, Container,Flex,Text } from "@mantine/core";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react"
