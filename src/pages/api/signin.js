@@ -12,5 +12,5 @@ export default async function handler(req, res) {
 //       await db.collection("users").insertOne({email:session.user.email,posts:[]});
 //       res.json({msg:'Email added'})
 //     }
-      res.json(session)
+      res.json({msg:'hello'})
     }
