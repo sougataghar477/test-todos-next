@@ -3,9 +3,9 @@ import { useEffect,useState } from "react";
 import { Container,Loader } from "@mantine/core";
 function Tasks(){
     let [posts,setPosts]=useState([]);
-    let [isLoading,setLoading]=useState(false);
+    let [isLoading,setLoading]=useState(true);
     useEffect(()=>{
-        fetch('/api/getPosts').then(a => {setLoading(true); return a.json()}).then(b => {setLoading(false);setPosts(b.posts)})
+        fetch('/api/getPosts').then(a => { return a.json()}).then(b => {setLoading(false);setPosts(b.posts)})
     },[])
 return <Container maw={640}>
     <h1>Tasks</h1>
