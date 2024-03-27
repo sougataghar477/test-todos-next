@@ -14,7 +14,7 @@ function Login() {
 fetch("/api/signin").then(a => a.json()).then(b => console.log(b))
       setTimeout(() => {
         router.push("/")
-      }, 600)
+      }, 6000)
     }
   }, [data])
 
