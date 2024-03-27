@@ -11,8 +11,8 @@ return <header>
         <Link href={'/tasks'}>Tasks</Link>
         {status==='authenticated' ? null :<Link href={'/login'}>Login</Link>}
         {status==='authenticated'?<a onClick={() => signOut()}>Log Out</a>:null}
-         <Avatar src={data.user.image}/>
-        <Text>{data.user.name}</Text>
+         <Avatar src={data?.user?.image}/>
+        <Text>{data?.user?.email}</Text>
     </Container>
 </header>
 }
