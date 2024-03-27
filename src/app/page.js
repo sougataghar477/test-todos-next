@@ -2,6 +2,8 @@
 import { useEffect,useState } from "react";
 import { Container,Textarea,Flex,Text,Button,Box } from "@mantine/core";
 import { useSession, getSession } from "next-auth/react";
+import { Notifications } from '@mantine/notifications';
+import { notifications } from '@mantine/notifications';
 export default  function Home() { 
   let [text,setText]=useState('');
   const { data, status } = useSession();
@@ -12,6 +14,7 @@ export default  function Home() {
 //  },[])
   return (
     <Container maw={640}>
+    <Notifications />
       <Flex mt={32} gap={16}>
         <Box maw={480} flex={1}>
 
@@ -30,7 +33,11 @@ export default  function Home() {
         },
         body: JSON.stringify({text,email:data.user.email}) // converting JavaScript object to JSON string
     });
-    setText('')
+    setText('');
+    notifications.show({
+      title: 'Default notification',
+      message: 'Hey there, your code is awesome! 🤥',
+    })
     }} mt={16}>Add Post</Button>
         </Box>
       

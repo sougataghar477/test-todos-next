@@ -12,7 +12,7 @@
     "@auth/mongodb-adapter": "^2.5.0",
     "@mantine/core": "^7.6.2",
     "@mantine/hooks": "^7.6.2",
-    "@mantine/notifications": "^7.6.2",
+    "@mantine/notifications": "^7.7.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "mongodb": "^6.5.0",
