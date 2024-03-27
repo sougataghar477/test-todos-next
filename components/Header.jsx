@@ -13,9 +13,9 @@ return <header>
         {status==='authenticated' ? null :<Link href={'/login'}>Login</Link>}
         {status==='authenticated'?<a onClick={() => signOut()}>Log Out</a>:null}
          <Avatar src={data?.user?.image}/>
-        <Text >{data?.user?.email}</Text>
+        <Text>{data?.user?.email}</Text>
+
         </Flex>
-        
     </Container>
 </header>
 }
